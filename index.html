@@ -13,11 +13,11 @@
 
     <form class="container" id="form">
         <h1 class="text-center p1">Export xlsx from xml export of Speccy</h1>
-        <h2 class="text-center p2">Created by Phung Ngoc Thanh</h2>
+        <h2 class="text-center p2">Created by Rio Richard</h2>
         <h3 class="text-center p3">Version 1.0</h3>
         <div class="mb-3">
             <label class="form-label" for="files">Input your files</label>
-            <input class="form-control" name="files" id="files" type="file" multiple accept=".xml">
+            <input class="form-control" name="files" id="files" type="file" multiple accept=".xml" required>
         </div>
         <div class="mb-3">
             <button class="btn btn-primary" id="export">Export</button>
@@ -36,7 +36,7 @@
             const options = {
                 method: 'POST',
                 body: body
-
+            }
             const result = await fetch("http://localhost:3000/", options);
                 const data = await result.blob();
                 const url = URL.createObjectURL(data);
@@ -44,6 +44,7 @@
                 a.href = url;
                 a.download = "output.xlsx";
                 a.click();
+            URL.revokeObjectURL(result);
                 a.remove();
             });
     </script>
