@@ -61,7 +61,7 @@ function getData(xmlFile) {
     const data = summaryInfo.map((pcAttrs) => {
         const check = header.includes(pcAttrs.attributes.title)
         if (check) {
-            if (pcAttrs.attributes.title == 'Graphics') {
+            if (['Graphics', 'Storage'].includes(pcAttrs.attributes.title)) {
                 return [...pcAttrs.elements.map(item => item.attributes.title)];
             }
             else {
